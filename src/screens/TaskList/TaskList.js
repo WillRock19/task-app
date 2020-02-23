@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, ImageBackground, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  ImageBackground,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 
+import commonStyles from '../../common/styles';
 import styles from './styles';
 import todayImage from '../../../assets/imgs/today.jpg';
 import Task from './../../components/Task';
@@ -8,10 +15,13 @@ import Task from './../../components/Task';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 export default class TaskList extends Component {
   constructor() {
     super();
     this.state = {
+      showDoneTasks: true,
       tasks: this.createDefaultTasks(),
     };
   }
@@ -32,8 +42,12 @@ export default class TaskList extends Component {
     ];
   };
 
+  toogleFilter = () => {
+    this.setState({showDoneTasks: !this.state.showDoneTasks});
+  };
+
   toogleTask = taskId => {
-    const tasks = [...this.state.tasks];
+    const tasks = this.state.tasks.slice();
 
     tasks.forEach(task => {
       if (task.id === taskId) {
@@ -51,6 +65,15 @@ export default class TaskList extends Component {
     return (
       <View style={styles.container}>
         <ImageBackground source={todayImage} style={styles.background}>
+          <View style={styles.iconBar}>
+            <TouchableOpacity onPress={this.toogleFilter}>
+              <Icon
+                name={this.state.showDoneTasks ? 'eye' : 'eye-slash'}
+                size={19}
+                color={commonStyles.colors.secondary}
+              />
+            </TouchableOpacity>
+          </View>
           <View style={styles.titleBar}>
             <Text style={styles.title}>Hoje</Text>
             <Text style={styles.subtitle}>{today}</Text>
