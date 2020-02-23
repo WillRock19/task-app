@@ -28,7 +28,7 @@ export default class TaskList extends Component {
             estimatedAt={new Date()}
             doneAt={new Date()}
           />
-          <Task description="Comprar Livro" estimatedAt={new Date()} />
+          <Task description="Ler Livro" estimatedAt={new Date()} />
         </View>
         <Text style={styles.listContainer}>TaskList</Text>
       </View>

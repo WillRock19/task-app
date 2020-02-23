@@ -27,4 +27,13 @@ export default StyleSheet.create({
     backgroundColor: '#4D7031',
     justifyContent: 'center',
   },
+  description: {
+    fontFamily: commonStyles.fontFamily,
+    fontSize: 15,
+    color: commonStyles.colors.mainText,
+  },
+  date: {
+    fontFamily: commonStyles.fontFamily,
+    color: commonStyles.colors.subText,
+  },
 });
