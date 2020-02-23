@@ -8,7 +8,7 @@ export default StyleSheet.create({
   background: {
     flex: 3,
   },
-  listContainer: {
+  tasksContainer: {
     flex: 7,
   },
   titleBar: {
