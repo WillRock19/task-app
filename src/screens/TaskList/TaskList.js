@@ -28,7 +28,6 @@ export default class TaskList extends Component {
         id: Math.random(),
         description: 'Ler livro da Sasha Bartland',
         estimatedAt: new Date(),
-        doneAt: new Date(),
       },
     ];
   };
