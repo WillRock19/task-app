@@ -24,7 +24,7 @@ export default class TaskList extends Component {
     super();
     this.state = {
       showDoneTasks: true,
-      showModalAddTask: true,
+      showModalAddTask: false,
       visibleTasks: [],
       tasks: this.createDefaultTasks(),
     };
@@ -78,6 +78,8 @@ export default class TaskList extends Component {
     });
   };
 
+  addtask = description => {};
+
   render() {
     const today = moment()
       .locale('pt-br')
@@ -113,6 +115,12 @@ export default class TaskList extends Component {
             )}
           />
         </View>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => this.setState({showModalAddTask: true})}
+          activeOpacity={0.7}>
+          <Icon name="plus" size={19} color={commonStyles.colors.secondary} />
+        </TouchableOpacity>
       </View>
     );
   }

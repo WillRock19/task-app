@@ -8,7 +8,6 @@ export default StyleSheet.create({
   },
   container: {
     backgroundColor: '#FFF',
-    flex: 2,
   },
   header: {
     fontFamily: commonStyles.fontFamily,
@@ -17,5 +16,24 @@ export default StyleSheet.create({
     textAlign: 'center',
     padding: 15,
     fontSize: 19,
+  },
+  input: {
+    fontFamily: commonStyles.fontFamily,
+    width: '90%',
+    height: 40,
+    margin: 15,
+    backgroundColor: '#FFF',
+    borderWidth: 1,
+    borderColor: '#E3E3E3',
+    borderRadius: 6,
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  button: {
+    margin: 20,
+    marginRight: 30,
+    color: commonStyles.colors.todayTasks,
   },
 });
