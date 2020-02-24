@@ -22,9 +22,14 @@ export default class TaskList extends Component {
     super();
     this.state = {
       showDoneTasks: true,
+      visibleTasks: [],
       tasks: this.createDefaultTasks(),
     };
   }
+
+  componentDidMount = () => {
+    this.filterTasks();
+  };
 
   createDefaultTasks = () => {
     return [
@@ -43,7 +48,20 @@ export default class TaskList extends Component {
   };
 
   toogleFilter = () => {
-    this.setState({showDoneTasks: !this.state.showDoneTasks});
+    this.setState({showDoneTasks: !this.state.showDoneTasks}, this.filterTasks);
+  };
+
+  filterTasks = () => {
+    let visibleTasks = null;
+    if (this.state.showDoneTasks) {
+      visibleTasks = this.state.tasks.slice();
+    } else {
+      const taskIsPending = task =>
+        task.doneAt === undefined || task.doneAt === null;
+
+      visibleTasks = this.state.tasks.filter(taskIsPending);
+    }
+    this.setState({visibleTasks});
   };
 
   toogleTask = taskId => {
@@ -53,7 +71,7 @@ export default class TaskList extends Component {
       if (task.id === taskId) {
         task.doneAt = task.doneAt ? null : new Date();
       }
-      this.setState({tasks});
+      this.setState({tasks}, this.filterTasks);
     });
   };
 
@@ -81,7 +99,7 @@ export default class TaskList extends Component {
         </ImageBackground>
         <View style={styles.tasksContainer}>
           <FlatList
-            data={this.state.tasks}
+            data={this.state.visibleTasks}
             keyExtractor={item => `${item.id}`}
             renderItem={({item}) => (
               <Task {...item} toogleTask={this.toogleTask} />
