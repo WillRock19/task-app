@@ -10,7 +10,9 @@ import {
 import commonStyles from '../../common/styles';
 import styles from './styles';
 import todayImage from '../../../assets/imgs/today.jpg';
+
 import Task from './../../components/Task';
+import AddTask from './../AddTask';
 
 import moment from 'moment';
 import 'moment/locale/pt-br';
@@ -22,6 +24,7 @@ export default class TaskList extends Component {
     super();
     this.state = {
       showDoneTasks: true,
+      showModalAddTask: true,
       visibleTasks: [],
       tasks: this.createDefaultTasks(),
     };
@@ -82,6 +85,10 @@ export default class TaskList extends Component {
 
     return (
       <View style={styles.container}>
+        <AddTask
+          isVisible={this.state.showModalAddTask}
+          onCancel={() => this.setState({showModalAddTask: false})}
+        />
         <ImageBackground source={todayImage} style={styles.background}>
           <View style={styles.iconBar}>
             <TouchableOpacity onPress={this.toogleFilter}>
